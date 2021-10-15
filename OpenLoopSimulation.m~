@@ -1,0 +1,43 @@
+%This code shows the open loop simulation
+
+close all
+clear all
+clc
+    
+N = 6;      % Total of tate variables
+long = 1;   % length of the string
+rho = 1;    % mass densitu
+T = 1;      % Young's modulus
+Dis = 1;    % Dissipation along the string
+%Create a model (ABCD) in which the state x = [qd;pd] where qd is the
+%discretized strain and pd is the discretized momentum
+[A,B,C,D,Q,h] = VibratingStringModel(N,long,rho,T,Dis);
+
+% With this matrix we can obtain the displacement of the string
+Cw = [h*tril(ones(N/2,N/2)),zeros(N/2,N/2),ones(N/2,1)];
+
+
+t0 = 0;
+dt = 1e-3;
+t = t0:dt:1000*dt;
+Nt = length(t);
+[Ad,Bd,Cd,Dd] = MidPointTimeDiscretization(A,B,C,D,dt);
+
+for i = 1:Nt
+    
+    z(:,k+1) = Ad*z(:,k)+Bd*
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
