@@ -10,8 +10,8 @@
 % y = Cx+Du
 % u = [u1;u2]. u1 is the velocity at a and u2 is the force at b
 % y = [y1;y2]. y1 is the force at a and y2 is the velocity at b
-% x = [qd;pd] with qd the discretized strain and pd the discretized
-% momentum
+% x = [qd;pd;vi] with qd the discretized strain, pd the discretized
+% momentum and vi = int_0^t [v(t,0)] dt
 function [A,B,C,D,Q,h,zp,zq] = VibratingStringModel(N,long,rho_c,T_c,Dis)
 
 np = N/2;

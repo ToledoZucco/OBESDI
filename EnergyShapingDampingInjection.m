@@ -1,14 +1,14 @@
-%This code shows the daming injection Simulation
+%This code shows the Energy shaping and daming injection Simulation
 
 close all
 % clear all
 clc
     
-N = 200;      % Total of tate variables
+N = 100;      % Total of tate variables
 long = 1;   % length of the string
 rho = 1;    % mass densitu
 T = 1;      % Young's modulus
-Dis = 0.01;    % Dissipation along the string
+Dis = 0;    % Dissipation along the string
 %Create a model (ABCD) in which the state x = [qd;pd] where qd is the
 %discretized strain and pd is the discretized momentum
 [A,B,C,D,Q,h,np,nq] = VibratingStringModel(N,long,rho,T,Dis);
@@ -16,19 +16,28 @@ Dis = 0.01;    % Dissipation along the string
 % With this matrix we can obtain the displacement of the string
 Cw = [h*tril(ones(N/2,N/2)),zeros(N/2,N/2),ones(N/2,1)];
 
+C_int_strain = h*[ones(1,N/2),zeros(1,N/2),0];
+C_int_momentum = h*[zeros(1,N/2),ones(1,N/2),0];
 
 t0 = 0;
-dt = 1e-3;
-t = t0:dt:5000*dt;
+dt = 1e-5;
+t = t0:dt:400000*dt;
 Nt = length(t);
 [Ad,Bd,Cd,Dd] = MidPointTimeDiscretization(A,B,C,D,dt);
 
 %% Damping Injection
 
-k1 = 1;
-k2 = 1;
+k1 = 5;
+k2 = 5;
 K = diag([k1,k2]);
-K = inv(eye(2)+K*Dd)*K*Cd;
+% K = inv(eye(2)+K*Dd)*K*Cd;
+K = K*Cd;
+
+%% Energy shaping
+
+Sig1 = 50;
+Sig2 = 50;
+Sig = diag([Sig1,Sig2]);
 
 
 %Initial condition
@@ -44,8 +53,10 @@ u = zeros(2,Nt);
 y = zeros(2,Nt);
 for k = 1:Nt
     
+    int_momentum = C_int_momentum*z(:,k);
+    int_strain = C_int_strain*z(:,k);
     
-    u(:,k) = -K*z(:,k);
+    u(:,k) = -K*z(:,k)-Sig*[int_momentum;int_strain];
     y(:,k) = Cd*z(:,k) + Dd*u(:,k);
     z(:,k+1) = Ad*z(:,k) + Bd*u(:,k);
 end

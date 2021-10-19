@@ -19,7 +19,7 @@ Cw = [h*tril(ones(N/2,N/2)),zeros(N/2,N/2),ones(N/2,1)];
 
 t0 = 0;
 dt = 1e-3;
-t = t0:dt:5000*dt;
+t = t0:dt:10000*dt;
 Nt = length(t);
 [Ad,Bd,Cd,Dd] = MidPointTimeDiscretization(A,B,C,D,dt);
 
@@ -85,7 +85,7 @@ set(gca,'FontSize',font);
 
 
 
-figureDirectory = 'Damp';
+figureDirectory = 'DampingInjection';
 filename = 'Sim';
 LegendSim1 = '$w(t,\zeta)$';
 saveFigures = false;

@@ -24,7 +24,7 @@ ylabel({'$[m]$'},'Interpreter','latex','FontSize',font)
 xlabel({'$\zeta$ $[m]$'},'Interpreter','latex','FontSize',font)
 %grid on
 xlim([0,1])
-ylim([-1,1])
+ylim([-1,2])
 set(gca,'FontSize',font);
 
 if saveFigures == true
