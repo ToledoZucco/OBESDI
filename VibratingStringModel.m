@@ -56,6 +56,7 @@ D = 0;
 
 
 %Include one state vi = int_0^t [v(t,0)] dt
+%This new state is for rebuilding w(t,zeta)
 bi = [1,0];
 A = [A,zeros(n,1);zeros(1,N),0];
 B = [B;bi];

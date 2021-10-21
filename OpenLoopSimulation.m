@@ -4,11 +4,11 @@ close all
 % clear all
 clc
     
-N = 200;      % Total of tate variables
+N = 1000;      % Total of tate variables
 long = 1;   % length of the string
 rho = 1;    % mass densitu
 T = 1;      % Young's modulus
-Dis = 0.01;    % Dissipation along the string
+Dis = 0;    % Dissipation along the string
 %Create a model (ABCD) in which the state x = [qd;pd] where qd is the
 %discretized strain and pd is the discretized momentum
 [A,B,C,D,Q,h,np,nq] = VibratingStringModel(N,long,rho,T,Dis);
@@ -80,7 +80,7 @@ figureDirectory = 'OpenLoopSimulation';
 filename = 'Sim';
 LegendSim1 = '$w(t,\zeta)$';
 saveFigures = false;
-N_vid = 100;
+N_vid = 50;
 dk_vid = (Nt-1)/N_vid;
 k_vid = 1:dk_vid:Nt-1;
 zeta = linspace(0,long,N/2);

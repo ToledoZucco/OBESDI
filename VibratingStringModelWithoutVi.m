@@ -12,6 +12,8 @@
 % y = [y1;y2]. y1 is the force at a and y2 is the velocity at b
 % x = [qd;pd] with qd the discretized strain, pd the discretized
 % momentum 
+
+%%%% DELETE THIS CODE %%%%%%%
 function [A,B,C,D,Q,h,zp,zq] = VibratingStringModelWithoutVi(N,long,rho_c,T_c,Dis)
 
 np = N/2;

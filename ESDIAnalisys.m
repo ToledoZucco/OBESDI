@@ -3,6 +3,27 @@
 close all
 % clear all
 clc
+
+
+%% Infinite-Dimensional Analisys
+
+P1 = [0,1;1,0];
+I2 = eye(2);
+R = 1/sqrt(2)*[P1,-P1;I2,I2];
+W = 1/sqrt(2)*[-1,0,0,1;0,1,1,0];
+Wt = 1/sqrt(2)*[0,1,-1,0;1,0,0,1];
+
+
+
+
+
+
+
+
+
+
+
+%% Finite-dimensonal Analisys
     
 N = 100;      % Total of tate variables
 long = 1;   % length of the string

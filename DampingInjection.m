@@ -4,7 +4,7 @@ close all
 % clear all
 clc
     
-N = 200;      % Total of tate variables
+N = 1000;      % Total of tate variables
 long = 1;   % length of the string
 rho = 1;    % mass densitu
 T = 1;      % Young's modulus
@@ -19,7 +19,7 @@ Cw = [h*tril(ones(N/2,N/2)),zeros(N/2,N/2),ones(N/2,1)];
 
 t0 = 0;
 dt = 1e-3;
-t = t0:dt:10000*dt;
+t = t0:dt:5000*dt;
 Nt = length(t);
 [Ad,Bd,Cd,Dd] = MidPointTimeDiscretization(A,B,C,D,dt);
 
@@ -89,7 +89,7 @@ figureDirectory = 'DampingInjection';
 filename = 'Sim';
 LegendSim1 = '$w(t,\zeta)$';
 saveFigures = false;
-N_vid = 100;
+N_vid = 50;
 dk_vid = (Nt-1)/N_vid;
 k_vid = 1:dk_vid:Nt-1;
 zeta = linspace(0,long,N/2);
