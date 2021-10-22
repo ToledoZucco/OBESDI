@@ -22,7 +22,7 @@ T = 1;      % Young's modulus
 Dis = 0;    % Dissipation along the string
 %Create a model (ABCD) in which the state x = [qd;pd] where qd is the
 %discretized strain and pd is the discretized momentum
-[A,B,C,D,Q,h,np,nq] = VibratingStringModel(N,long,rho,T,Dis);
+[A,B,C,D,Q,h,np,nq] = VibratingStringModelWithoutVi(N,long,rho,T,Dis);
 
 A = A(1:end-1,1:end-1);
 B = B(1:end-1,:);
@@ -38,8 +38,8 @@ Cp = h*[zeros(1,N/2),ones(1,N/2)];
 Cpe = [Cp;Ce];
 
 
-gamma1 = 10;
-gamma2 = 10;
+gamma1 = 1;
+gamma2 = 1;
 gamma = diag([gamma2,gamma1]);
 
 
@@ -48,14 +48,10 @@ Dc = h/2*diag([rho,1/T]);
 Cea = [1,zeros(1,N-1)];
 Cpb = [zeros(1,N-1),1];
 
-theta1 = 1;
-theta2 = 10;
 Theta = diag([theta1*(T+gamma1*long),-theta2*(1/rho+gamma2*long)]);
 
 K = inv(I2 + gamma*Dc)*(gamma*Cpe-Theta*[Cea;Cpb])
 
-ACL = A-B*K;
-eig(ACL)
 
 
 
